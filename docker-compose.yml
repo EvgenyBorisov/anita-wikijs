@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  wikijs:
+    image: ghcr.io/requarks/wiki:2
+    container_name: anita-verse-wikijs
+    restart: unless-stopped
+    environment:
+      # Подключение к PostgreSQL
+      DB_TYPE: postgres
+      DB_HOST: ${POSTGRES_HOST}
+      DB_PORT: ${POSTGRES_PORT}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASS: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
+
+      # Базовый URL (важно для ссылок, OAuth и пр.)
+      # Можно сначала оставить http://localhost:3000, потом сменить в настройках
+      # но раз у нас есть домен - сразу укажем его.
+      WIKI_HOST: ${WIKI_HOST}
+      # Устаревшее WIKI_URL для некоторых конфигов, но можно задать:
+      # WIKI_URL: https://${WIKI_HOST}
+
+      # Первичный админ при первом запуске (с дальнейшими настройками в UI)
+      ADMIN_EMAIL: ${WIKI_ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${WIKI_ADMIN_PASSWORD}
+
+    ports:
+      # Если хочешь сразу открыть наружу:
+      - "${WIKI_PORT}:3000"
+    networks:
+      - anita-network
+
+volumes:
+  db_data:
+
+networks:
+  anita-network:
+    external: true
