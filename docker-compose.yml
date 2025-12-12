@@ -21,10 +21,6 @@ services:
       # Устаревшее WIKI_URL для некоторых конфигов, но можно задать:
       # WIKI_URL: https://${WIKI_HOST}
 
-      # Первичный админ при первом запуске (с дальнейшими настройками в UI)
-      ADMIN_EMAIL: ${WIKI_ADMIN_EMAIL}
-      ADMIN_PASSWORD: ${WIKI_ADMIN_PASSWORD}
-
     ports:
       # Если хочешь сразу открыть наружу:
       - "${WIKI_PORT}:3000"
