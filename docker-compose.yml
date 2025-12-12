@@ -13,14 +13,6 @@ services:
       DB_USER: ${POSTGRES_USER}
       DB_PASS: ${POSTGRES_PASSWORD}
       DB_NAME: ${POSTGRES_DB}
-
-      # Базовый URL (важно для ссылок, OAuth и пр.)
-      # Можно сначала оставить http://localhost:3000, потом сменить в настройках
-      # но раз у нас есть домен - сразу укажем его.
-      WIKI_HOST: ${WIKI_HOST}
-      # Устаревшее WIKI_URL для некоторых конфигов, но можно задать:
-      # WIKI_URL: https://${WIKI_HOST}
-
     ports:
       # Если хочешь сразу открыть наружу:
       - "${WIKI_PORT}:3000"
